@@ -1,0 +1,5 @@
+Sky texture credit (CC0, no attribution required but appreciated):
+File: Cloudy_Sky-Blue_01-1024x512.png, renamed to Sky.png
+Pack: Seamless Sky Backgrounds by Screaming Brain Studios
+Source: https://opengameart.org/content/seamless-sky-backgrounds
+License: CC0 (public domain)
