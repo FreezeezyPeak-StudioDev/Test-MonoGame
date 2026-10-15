@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/FreezeezyPeak project dream/Games - AppsPC - Webs - Mods - Extenciones - AppsCell/Tests/Test Monogame/Test-00001-Fisicas Physics/Test-00001-Fisicas Physics/Content/DefaultFont.spritefont</SourceFile>
+  <SourceTime>2026-10-10T14:07:35.5402922-06:00</SourceTime>
+  <DestFile>D:/FreezeezyPeak project dream/Games - AppsPC - Webs - Mods - Extenciones - AppsCell/Tests/Test Monogame/Test-00001-Fisicas Physics/Test-00001-Fisicas Physics/Content/bin/DesktopGL/Content/DefaultFont.xnb</DestFile>
+  <DestTime>2026-10-10T14:10:23.682373-06:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2026-10-08T05:48:48-06:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2026-10-08T05:48:48-06:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

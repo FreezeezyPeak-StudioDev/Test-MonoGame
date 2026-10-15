@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test-00001 Físicas Physics | FreezeezyPeak</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; background: #16181f; color: #d5d9e2; line-height: 1.7; margin: 0; }
+  header { text-align: center; padding: 40px 20px 24px; border-bottom: 1px solid #2c3040; }
+  header img { width: 120px; height: 120px; object-fit: contain; }
+  header h1 { font-size: 1.6rem; margin: 12px 0 4px; font-weight: 600; color: #fff; }
+  header p { color: #9aa1b5; font-size: .95rem; }
+  nav.idioma { margin-top: 16px; }
+  nav.idioma button { background: transparent; border: 1px solid #4a5068; color: #d5d9e2; border-radius: 4px; padding: 4px 14px; margin: 0 4px; cursor: pointer; font-size: .85rem; font-family: inherit; }
+  nav.idioma button.activo { background: #2c3040; color: #fff; border-color: #6a7190; }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 20px 40px; }
+  h2 { font-size: 1.1rem; font-weight: 600; margin: 28px 0 8px; color: #fff; border-bottom: 1px solid #2c3040; padding-bottom: 6px; }
+  p { margin: 8px 0; }
+  ul { padding-left: 20px; margin: 8px 0; }
+  li { margin-bottom: 4px; }
+  strong { color: #fff; }
+  kbd { background: #242836; border: 1px solid #4a5068; border-radius: 3px; padding: 0 6px; font-size: .85rem; font-family: inherit; color: #fff; }
+  .recursos img { max-width: 100%; height: auto; margin: 12px 0 4px; }
+  .recursos p.pie { color: #9aa1b5; font-size: .85rem; margin: 0 0 16px; }
+  footer { text-align: center; padding: 20px; border-top: 1px solid #2c3040; color: #9aa1b5; font-size: .9rem; }
+  footer img { width: 40px; height: 40px; object-fit: contain; vertical-align: middle; margin-right: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="Resources/Textures/Logo/Logo-FreezeezyPeak-HD.png" alt="Logo FreezeezyPeak">
+  <h1>Test-00001 Físicas Physics</h1>
+  <p data-es="FreezeezyPeak — Test · Práctica · Recreación" data-en="FreezeezyPeak — Test · Practice · Recreation">FreezeezyPeak — Test · Práctica · Recreación</p>
+  <nav class="idioma">
+    <button id="btn-es" class="activo" onclick="setIdioma('es')">Español</button>
+    <button id="btn-en" onclick="setIdioma('en')">English</button>
+  </nav>
+</header>
+
+<main>
+  <h2 data-es="Propósito" data-en="Purpose">Propósito</h2>
+  <p data-es="Este test valida el motor de físicas 2D del proyecto: gravedad, colisiones, rebote, fricción, reposo y apilado de cuerpos. Es el paso 00001, la base sobre la que se construirán los juegos de FreezeezyPeak." data-en="This test validates the project's 2D physics engine: gravity, collisions, bounce, friction, rest and body stacking. It is step 00001, the foundation on which FreezeezyPeak games will be built.">Este test valida el motor de físicas 2D del proyecto: gravedad, colisiones, rebote, fricción, reposo y apilado de cuerpos. Es el paso 00001, la base sobre la que se construirán los juegos de FreezeezyPeak.</p>
+
+  <h2 data-es="Práctica" data-en="Practice">Práctica</h2>
+  <ul>
+    <li data-es="Mundo 1 — Esferas: rodadura real con velocidad y giro acoplados, choques con fricción." data-en="World 1 — Spheres: real rolling with coupled velocity and spin, friction collisions.">Mundo 1 — Esferas: rodadura real con velocidad y giro acoplados, choques con fricción.</li>
+    <li data-es="Mundo 2 — Cajas: cuerpos rígidos orientados, impulso con giro, fricción alta y reposo estable." data-en="World 2 — Boxes: oriented rigid bodies, spin impulse, high friction and stable rest.">Mundo 2 — Cajas: cuerpos rígidos orientados, impulso con giro, fricción alta y reposo estable.</li>
+    <li><span data-es="Colisiones: tecla" data-en="Collisions: press">Colisiones: tecla</span> <kbd>C</kbd> <span data-es="para mostrar los contornos de colisión exactos." data-en="to show the exact collision outlines.">para mostrar los contornos de colisión exactos.</span></li>
+    <li data-es="Arrastre: tomar cualquier cuerpo con el ratón y lanzarlo para probar su respuesta." data-en="Drag: grab any body with the mouse and throw it to test its response.">Arrastre: tomar cualquier cuerpo con el ratón y lanzarlo para probar su respuesta.</li>
+  </ul>
+
+  <h2 data-es="Recreación" data-en="Recreation">Recreación</h2>
+  <ul>
+    <li><strong data-es="Explosión" data-en="Explosion">Explosión</strong> (<kbd>E</kbd>): <span data-es="onda radial que lanza los cuerpos hacia afuera y arriba." data-en="radial wave that throws bodies outward and upward.">onda radial que lanza los cuerpos hacia afuera y arriba.</span></li>
+    <li><strong data-es="Golpe" data-en="Strike">Golpe</strong> (<kbd>G</kbd>): <span data-es="onda horizontal que empuja hacia los lados." data-en="horizontal wave that pushes to the sides.">onda horizontal que empuja hacia los lados.</span></li>
+    <li><strong data-es="Controles:" data-en="Controls:">Controles:</strong> <span data-es="Espacio iniciar/pausar, R reiniciar, 1/2 cambiar de mundo, Esc salir." data-en="Space start/pause, R restart, 1/2 switch world, Esc quit.">Espacio iniciar/pausar, R reiniciar, 1/2 cambiar de mundo, Esc salir.</span></li>
+  </ul>
+
+  <h2 data-es="Recursos" data-en="Assets">Recursos</h2>
+  <div class="recursos">
+    <img src="Resources/Textures/Physics/Balls.png" alt="Balls atlas">
+    <p class="pie" data-es="Physics / Balls — atlas del mundo de esferas." data-en="Physics / Balls — spheres world atlas.">Physics / Balls — atlas del mundo de esferas.</p>
+    <img src="Resources/Textures/Physics/Boxes.png" alt="Boxes atlas">
+    <p class="pie" data-es="Physics / Boxes — atlas del mundo de cajas." data-en="Physics / Boxes — boxes world atlas.">Physics / Boxes — atlas del mundo de cajas.</p>
+    <img src="Resources/Textures/Backgrounds/Spheres-Background.png" alt="Spheres background">
+    <p class="pie" data-es="Backgrounds / Spheres-Background — fondo del mundo de esferas." data-en="Backgrounds / Spheres-Background — spheres world background.">Backgrounds / Spheres-Background — fondo del mundo de esferas.</p>
+    <img src="Resources/Textures/Backgrounds/Boxes-Background.png" alt="Boxes background">
+    <p class="pie" data-es="Backgrounds / Boxes-Background — fondo del mundo de cajas." data-en="Backgrounds / Boxes-Background — boxes world background.">Backgrounds / Boxes-Background — fondo del mundo de cajas.</p>
+  </div>
+</main>
+
+<footer>
+  <img src="Resources/Textures/Logo/Logo-FreezeezyPeak-HD.png" alt="FreezeezyPeak"><span>FreezeezyPeak · Test-00001 Físicas Physics</span>
+</footer>
+
+<script>
+function setIdioma(id) {
+  document.documentElement.lang = id === 'es' ? 'es' : 'en';
+  document.querySelectorAll('[data-es]').forEach(function (el) {
+    el.textContent = id === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+  });
+  document.getElementById('btn-es').className = id === 'es' ? 'activo' : '';
+  document.getElementById('btn-en').className = id === 'en' ? 'activo' : '';
+}
+</script>
+
+</body>
+</html>
