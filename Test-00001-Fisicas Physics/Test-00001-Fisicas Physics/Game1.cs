@@ -36,12 +36,13 @@ public class Game1 : Game
     private Texture2D _texCajasAtlas;
     private Texture2D _texPelotasAtlas;
     private Texture2D _texWhite;
-    private Texture2D _fondoEsferas; // Resources/Texturas/Fondo/Esfers-Fondo.png
-    private Texture2D _fondoCajas;   // Resources/Texturas/Fondo/Cajas-Fondos.png
+    private Texture2D _fondoEsferas; // Resources/Textures/Backgrounds/Spheres-Background.png
+    private Texture2D _fondoCajas;   // Resources/Textures/Backgrounds/Boxes-Background.png
+    private Texture2D _logoFreezeezyPeak; // Resources/Textures/Logo/Logo-FreezeezyPeak-HD.png
     private bool _texturasOk = true;
     private string _errorTexturas = "";
 
-    // Recortes de Cajas.png detectados por borde (1536x1024).
+    // Recortes de Boxes.png detectados por borde (1536x1024).
     private readonly Rectangle[] _cajaSourcesBase = new Rectangle[]
     {
         new Rectangle(65, 73, 186, 208),
@@ -186,7 +187,7 @@ public class Game1 : Game
             _errorTexturas += $"Falta {nombre}. ";
             var fb = new Texture2D(GraphicsDevice, 128, 128);
             Color[] d = new Color[128 * 128];
-            Color a = nombre.Contains("Caja") ? new Color(190, 130, 70) : new Color(90, 160, 220);
+            Color a = nombre.Contains("Box") ? new Color(190, 130, 70) : new Color(90, 160, 220);
             Color b = new Color(40, 44, 58);
             for (int y = 0; y < 128; y++)
                 for (int x = 0; x < 128; x++)
@@ -200,11 +201,27 @@ public class Game1 : Game
 
     private void CargarTexturasSeguras()
     {
-        _texCajasAtlas = CargarPngSeguro(Path.Combine("Resources", "Texturas", "Fisicas", "Cajas.png"), "Cajas");
-        _texPelotasAtlas = CargarPngSeguro(Path.Combine("Resources", "Texturas", "Fisicas", "Pelotas.png"), "Pelotas");
+        _texCajasAtlas = CargarPngSeguro(Path.Combine("Resources", "Textures", "Physics", "Boxes.png"), "Boxes");
+        _texPelotasAtlas = CargarPngSeguro(Path.Combine("Resources", "Textures", "Physics", "Balls.png"), "Balls");
         // Fondos del menu: gimnasio para esferas, almacen para cajas.
-        _fondoEsferas = CargarFondo(Path.Combine("Resources", "Texturas", "Fondo", "Esfers-Fondo.png"));
-        _fondoCajas = CargarFondo(Path.Combine("Resources", "Texturas", "Fondo", "Cajas-Fondos.png"));
+        _fondoEsferas = CargarFondo(Path.Combine("Resources", "Textures", "Backgrounds", "Spheres-Background.png"));
+        _fondoCajas = CargarFondo(Path.Combine("Resources", "Textures", "Backgrounds", "Boxes-Background.png"));
+        // Logo organizacion FreezeezyPeak (opcional: si falta, el juego sigue bien).
+        _logoFreezeezyPeak = CargarLogo();
+    }
+
+    private Texture2D CargarLogo()
+    {
+        // Solo vive en Resources: es el icono de la app FreezeezyPeak.
+        string relativo = Path.Combine("Resources", "Textures", "Logo", "Logo-FreezeezyPeak-HD.png");
+        string ruta = BuscarRuta(relativo);
+        if (ruta == null) return null;
+        try
+        {
+            using var fs = File.OpenRead(ruta);
+            return Texture2D.FromStream(GraphicsDevice, fs);
+        }
+        catch { return null; }
     }
 
     private Texture2D CargarFondo(string relativo)
@@ -219,7 +236,7 @@ public class Game1 : Game
         catch { return null; }
     }
 
-    // Pelotas: recorte PRECISO por deteccion de borde.
+    // Balls: recorte PRECISO por deteccion de borde.
     // Desde el centro de cada celda se lanzan rayos y se busca el salto de
     // brillo mas fuerte (el borde real de la pelota), se ajusta un circulo
     // por minimos cuadrados y se recorta justo ahi. Nada de recortes fijos
@@ -1106,7 +1123,7 @@ public class Game1 : Game
         _spriteBatch.Draw(_texWhite, new Rectangle(PlayW - WallW, 0, WallW, ScreenH - FloorH), new Color(44, 48, 64));
 
         if (_font != null)
-            _spriteBatch.DrawString(_font, "TEST FISICAS", new Vector2(24, 10), new Color(140, 150, 175));
+            DibujarCabeceraConLogo();
 
         if (_mundo == 1) DibujarEsferas();
         else DibujarCajas();
@@ -1129,7 +1146,7 @@ public class Game1 : Game
         base.Draw(gameTime);
     }
 
-    // Fondo del menu: gimnasio en esferas, almacen en cajas (carpeta Fondo).
+    // Fondo del menu: gimnasio para esferas, almacen para cajas (carpeta Backgrounds).
     // Ajuste "cover" a la zona de juego + velo oscuro para que se lea todo.
     private void DibujarFondoMenu()
     {
@@ -1144,6 +1161,25 @@ public class Game1 : Game
         var dest = new Rectangle((PlayW - dw) / 2, (ScreenH - dh) / 2, dw, dh);
         _spriteBatch.Draw(fondo, dest, Color.White);
         _spriteBatch.Draw(_texWhite, new Rectangle(0, 0, PlayW, ScreenH), new Color(0, 0, 0, 120));
+    }
+
+    // Cabecera zona de juego con logo FreezeezyPeak a la izquierda.
+    private void DibujarCabeceraConLogo()
+    {
+        if (_logoFreezeezyPeak != null)
+        {
+            int logoSize = 38;
+            _spriteBatch.Draw(_logoFreezeezyPeak,
+                new Rectangle(14, 8, logoSize, logoSize),
+                Color.White);
+            _spriteBatch.DrawString(_font, "TEST FISICAS", new Vector2(60, 10), new Color(140, 150, 175));
+            _spriteBatch.DrawString(_font, "FreezeezyPeak", new Vector2(60, 30), new Color(200, 210, 230),
+                0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0f);
+        }
+        else
+        {
+            _spriteBatch.DrawString(_font, "TEST FISICAS", new Vector2(24, 10), new Color(140, 150, 175));
+        }
     }
 
     private void DibujarEsferas()
@@ -1274,10 +1310,39 @@ public class Game1 : Game
         _spriteBatch.DrawString(_font, $"Estado: {estado}", new Vector2(x, y), Color.White);
         _spriteBatch.DrawString(_font, $"Mundo: {(_mundo == 1 ? "1 ESFERAS" : "2 CAJAS")}", new Vector2(x, y + 26), Color.White);
         _spriteBatch.DrawString(_font, $"FPS: {_fps:0}  Obj: {MundoActual().Count}", new Vector2(x, y + 52), Color.White);
-        _spriteBatch.DrawString(_font, "Arrastra para mover", new Vector2(x, y + 84), new Color(200, 200, 200));
+        _spriteBatch.DrawString(_font, "Arrastra para mover", new Vector2(x, y + 78), new Color(200, 200, 200));
         if (!_texturasOk)
-            _spriteBatch.DrawString(_font, "AVISO: " + _errorTexturas, new Vector2(x, y + 110), Color.White,
+            _spriteBatch.DrawString(_font, "AVISO: " + _errorTexturas, new Vector2(x, y + 104), Color.White,
                 0f, Vector2.Zero, 0.75f, SpriteEffects.None, 0f);
+
+        DibujarLogoPanel();
+    }
+
+    // Logo FreezeezyPeak al pie del panel lateral (siempre visible).
+    private void DibujarLogoPanel()
+    {
+        int boxX = PlayW + 16;
+        int boxW = PanelW - 32;
+        int boxY = ScreenH - 148;
+        int boxH = 110;
+        if (_logoFreezeezyPeak != null)
+        {
+            // Ajuste "contain": encaja sin deformar el logo cuadrado.
+            float esc = Math.Min((float)boxW / _logoFreezeezyPeak.Width,
+                                (float)boxH / _logoFreezeezyPeak.Height);
+            int dw = (int)(_logoFreezeezyPeak.Width * esc);
+            int dh = (int)(_logoFreezeezyPeak.Height * esc);
+            int dx = boxX + (boxW - dw) / 2;
+            _spriteBatch.Draw(_logoFreezeezyPeak, new Rectangle(dx, boxY, dw, dh), Color.White);
+        }
+        if (_font != null)
+        {
+            string marca = "FreezeezyPeak";
+            Vector2 s = _font.MeasureString(marca);
+            float sc = Math.Min(1f, (PanelW - 32) / Math.Max(s.X, 1f));
+            Vector2 p = new Vector2(PlayW + (PanelW - s.X * sc) / 2, boxY + boxH + 4);
+            _spriteBatch.DrawString(_font, marca, p, Color.White, 0f, Vector2.Zero, sc, SpriteEffects.None, 0f);
+        }
     }
 
     private void Etiqueta(string texto, int y)
