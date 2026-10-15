@@ -1,0 +1,24 @@
+=====================================================
+FreezeezyPeak-StudioDev-Test-MonoGame - LICENSE SECTION
+=====================================================
+
+---------------------------------
+ENGLISH
+---------------------------------
+
+License
+
+This repository's code is free for anyone to use, study, modify and share. See the LICENSE file for the full terms.
+
+Each test is covered by the same license unless its folder says otherwise.
+
+
+---------------------------------
+ESPAÑOL
+---------------------------------
+
+Licencia
+
+El código de este repositorio es libre para cualquiera que quiera usarlo, estudiarlo, modificarlo o compartirlo. Revisá el archivo LICENSE para ver los términos completos.
+
+Cada test está cubierto por la misma licencia, salvo que su carpeta indique lo contrario.
